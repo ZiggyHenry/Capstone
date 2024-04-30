@@ -31,12 +31,13 @@ public class Player : MonoBehaviour
     private float flashTimer = 0.0f;
     private int flashes = 0;
     private SpriteRenderer sp;
-    private Collider2D collider2d;
+    //private Collider2D collider2d;
+    private bool immune;
 
     void Start()
     {
         sp = GetComponent<SpriteRenderer>();
-        collider2d = GetComponent<Collider2D>();
+        //collider2d = GetComponent<Collider2D>();
 
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
@@ -73,14 +74,14 @@ public class Player : MonoBehaviour
                 if (sp.enabled)
                 {
                     sp.enabled = false;
-                    collider2d.enabled = false;
+                    immune = true;
                 }
                 else
                 {
                     flashes--;
                     if (flashes == 0)
                     {
-                        collider2d.enabled = true;
+                        immune = false;
                     }
                     sp.enabled = true;
                 }
@@ -216,7 +217,7 @@ public class Player : MonoBehaviour
 
     void ApplyDamage(float damage)
     {
-        if (damage > 0)
+        if (damage > 0 && !immune)
         {
             health--;
             healthBox.SendMessage("SetHealth", health);
