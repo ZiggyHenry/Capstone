@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     public GameObject altBulletPrefab;
     public GameObject altFireVisual;
     public GameObject healthBox;
+    public float flashTime = 0.25f;
+    public int totalFlashes = 4;
 
     private Rigidbody2D rb;
     private Vector2 movementDir;
@@ -26,9 +28,14 @@ public class Player : MonoBehaviour
     private float altFireCharge = 0.0f;
     private SpriteRenderer altFireVisualSp;
     private int health;
+    private float flashTimer = 0.0f;
+    private int flashes = 0;
+    private SpriteRenderer sp;
 
     void Start()
     {
+        sp = GetComponent<SpriteRenderer>();
+
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
 
@@ -55,6 +62,25 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (flashes > 0)
+        {
+            flashTimer += Time.deltaTime;
+            if (flashTimer >= flashTime)
+            {
+                flashTimer = 0.0f;
+                if (sp.enabled)
+                {
+                    sp.enabled = false;
+                }
+                else
+                {
+                    flashes--;
+
+                    sp.enabled = true;
+                }
+            }
+        }
+
         movementDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (Input.GetAxis("Vertical") <= 0.01f)
@@ -192,6 +218,10 @@ public class Player : MonoBehaviour
             if (health <= 0)
             {
                 death();
+            }
+            else
+            {
+                flashes = totalFlashes;
             }
         }
     }
