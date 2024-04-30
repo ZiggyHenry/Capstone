@@ -7,16 +7,16 @@ public class Bullet : MonoBehaviour
     public float lifespan = 1.0f;
     public float damage = 1.0f;
 
-    public Color hitColor = new Color(1, 0, 0, 0.8f);
+    public Color hitColor = new Color(1, 0, 0, 0.5f);
 
     float time = 0.0f;
-    Collider2D collider;
+    Collider2D collider2d;
     SpriteRenderer sp;
 
     void Start()
     {
         sp = GetComponent<SpriteRenderer>();
-        collider = GetComponent<Collider2D>();
+        collider2d = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -36,9 +36,9 @@ public class Bullet : MonoBehaviour
         {
             collision.gameObject.SendMessage("ApplyDamage", damage);
 
-            collider.enabled = false;
+            collider2d.enabled = false;
             sp.color = hitColor;
-            time = lifespan - 0.0f;
+            time = lifespan - 0.5f;
         }
     }
 }

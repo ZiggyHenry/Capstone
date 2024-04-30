@@ -31,10 +31,12 @@ public class Player : MonoBehaviour
     private float flashTimer = 0.0f;
     private int flashes = 0;
     private SpriteRenderer sp;
+    private Collider2D collider2d;
 
     void Start()
     {
         sp = GetComponent<SpriteRenderer>();
+        collider2d = GetComponent<Collider2D>();
 
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
@@ -71,11 +73,15 @@ public class Player : MonoBehaviour
                 if (sp.enabled)
                 {
                     sp.enabled = false;
+                    collider2d.enabled = false;
                 }
                 else
                 {
                     flashes--;
-
+                    if (flashes == 0)
+                    {
+                        collider2d.enabled = true;
+                    }
                     sp.enabled = true;
                 }
             }
