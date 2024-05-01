@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public GameObject altBulletPrefab;
     public GameObject altFireVisual;
     public GameObject healthBox;
+    public GameObject trashUI;
     public float flashTime = 0.25f;
     public int totalFlashes = 4;
 
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer sp;
     //private Collider2D collider2d;
     private bool immune;
+    private int trashes = 0;
 
     void Start()
     {
@@ -236,5 +238,11 @@ public class Player : MonoBehaviour
     void death()
     {
         SceneManager.LoadScene("TitleScene");
+    }
+
+    void trashPickup() 
+    {
+        trashes++;
+        trashUI.SendMessage("SetTrash", trashes);
     }
 }
