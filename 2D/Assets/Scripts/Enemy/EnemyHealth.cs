@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void death()
     {
-        if (pickup) Instantiate(pickup, transform);
+        if (pickup) Instantiate(pickup, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }

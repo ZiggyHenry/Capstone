@@ -18,13 +18,13 @@ public class pickup : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D collision) 
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         pickUp(collision);
         Destroy(gameObject);
     }
 
-    public void pickUp(Collision2D collision) 
+    public void pickUp(Collider2D collision) 
     {
         collision.gameObject.SendMessage(message);
     }
