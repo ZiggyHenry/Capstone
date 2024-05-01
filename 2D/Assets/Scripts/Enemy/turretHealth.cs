@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class turretHealth : MonoBehaviour
+public class turretHealth : EnemyHealth
 {
-    public float health = 1.0f;
-
     private GameObject boss;
 
     void Start()
@@ -31,7 +29,7 @@ public class turretHealth : MonoBehaviour
                 boss.SendMessage("turretDestroyed");
             }
 
-            Destroy(gameObject);
+            death();
         }
     }
 }

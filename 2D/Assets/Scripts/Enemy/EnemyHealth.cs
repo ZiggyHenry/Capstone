@@ -6,6 +6,8 @@ public class EnemyHealth : MonoBehaviour
 {
     public float health = 1.0f;
 
+    public GameObject pickup;
+
     void Start()
     {
         
@@ -21,7 +23,14 @@ public class EnemyHealth : MonoBehaviour
         health -= Damage;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            death();
         }
+    }
+
+    public void death()
+    {
+        if (pickup) Instantiate(pickup, transform);
+
+        Destroy(gameObject);
     }
 }
