@@ -22,7 +22,6 @@ public class trashScript : MonoBehaviour
 
     void SetTrash(int trash)
     {
-        print("d");
         textBox.text = "Plastics: " + trash;
     }
 }

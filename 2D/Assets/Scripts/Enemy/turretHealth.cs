@@ -19,9 +19,9 @@ public class turretHealth : EnemyHealth
 
     }
 
-    void ApplyDamage(float Damage)
+    void Damage(float damage)
     {
-        health -= Damage;
+        health -= damage;
         if (health <= 0)
         {
             if (boss)

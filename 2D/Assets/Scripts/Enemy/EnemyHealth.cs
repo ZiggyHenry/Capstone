@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -7,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
     public float health = 1.0f;
 
     public GameObject pickup;
+    public GameObject dmgText;
+    public float textRange = 1.0f;
 
     void Start()
     {
@@ -18,9 +21,22 @@ public class EnemyHealth : MonoBehaviour
         
     }
 
-    void ApplyDamage(float Damage)
+    void ApplyDamage(float damage)
     {
-        health -= Damage;
+        GameObject Text = Instantiate(dmgText, new Vector2(transform.position.x + Random.Range(-textRange, textRange), transform.position.y + Random.Range(-textRange, textRange)), Quaternion.identity);
+        Text.GetComponent<TMP_Text>().text = "-" + damage.ToString();
+
+        if (health - damage <= 0) //crappy code look below
+        {
+            Text.GetComponent<TMP_Text>().color = Color.red;
+        }
+
+        Damage(damage);
+    }
+
+    void Damage(float damage)
+    {
+        health -= damage;
         if (health <= 0)
         {
             death();
