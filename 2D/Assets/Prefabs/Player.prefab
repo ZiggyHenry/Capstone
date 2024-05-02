@@ -194,8 +194,10 @@ MonoBehaviour:
   altBulletPrefab: {fileID: 6688761733655093017, guid: 04540aa94d3040449a9e2b4a8820108e, type: 3}
   altFireVisual: {fileID: 7809415834411357501}
   healthBox: {fileID: 0}
+  trashUI: {fileID: 0}
   flashTime: 0.1
   totalFlashes: 4
+  trashPrefab: {fileID: 5102185007496101773, guid: 5c4874e9ad95d7943be4b50c79ca4e2f, type: 3}
 --- !u!1 &4058220829657255319
 GameObject:
   m_ObjectHideFlags: 0

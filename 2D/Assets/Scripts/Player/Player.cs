@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public GameObject trashUI;
     public float flashTime = 0.25f;
     public int totalFlashes = 4;
+    public GameObject trashPrefab;
 
     private Rigidbody2D rb;
     private Vector2 movementDir;
@@ -251,10 +252,21 @@ public class Player : MonoBehaviour
 
     void death()
     {
+        if (trashes > 0)
+            Instantiate(trashPrefab, transform.position, Quaternion.identity);
+
+        trashes -= 3;
+        if (trashes <= 0) trashes = 0;
+        trashUI.SendMessage("SetTrash", trashes);
+
+
         transform.position = origin;
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = 0.0f;
+
+        health = maxHealth;
+        healthBox.SendMessage("SetHealth", health);
     }
 
     void trashPickup() 
@@ -265,6 +277,6 @@ public class Player : MonoBehaviour
 
     void endGame()
     {
-        SceneManager.LoadScene("Credits");
+        SceneManager.LoadScene("End Game");
     }
 }
