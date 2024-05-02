@@ -1,3 +1,5 @@
+using System.Net.NetworkInformation;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,9 +37,12 @@ public class Player : MonoBehaviour
     //private Collider2D collider2d;
     private bool immune;
     private int trashes = 0;
+    private Vector2 origin;
 
     void Start()
     {
+        origin = transform.position;
+
         sp = GetComponent<SpriteRenderer>();
         //collider2d = GetComponent<Collider2D>();
 
@@ -246,7 +251,10 @@ public class Player : MonoBehaviour
 
     void death()
     {
-        SceneManager.LoadScene("TitleScene");
+        transform.position = origin;
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = 0.0f;
     }
 
     void trashPickup() 
