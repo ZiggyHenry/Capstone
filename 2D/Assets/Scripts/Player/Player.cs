@@ -235,6 +235,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    void Heal()
+    {
+        if (health + 1 <= maxHealth)
+        {
+            health++;
+            healthBox.SendMessage("SetHealth", health);
+        }
+    }
+
     void death()
     {
         SceneManager.LoadScene("TitleScene");
