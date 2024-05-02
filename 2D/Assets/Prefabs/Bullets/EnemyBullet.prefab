@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ac17da02a09564c8d9aa225313e53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 3
+  lifespan: 5
   damage: 1
   hitColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!50 &7857381199578110154
