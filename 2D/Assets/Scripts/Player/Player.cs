@@ -254,4 +254,9 @@ public class Player : MonoBehaviour
         trashes++;
         trashUI.SendMessage("SetTrash", trashes);
     }
+
+    void endGame()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 }
