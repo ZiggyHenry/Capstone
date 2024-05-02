@@ -34,11 +34,17 @@ public class Bullet : MonoBehaviour
             && collision.gameObject.layer != LayerMask.NameToLayer("eBullet")
             && collision.gameObject.layer != LayerMask.NameToLayer("pBullet"))
         {
-            collision.gameObject.SendMessage("ApplyDamage", damage);
-
-            collider2d.enabled = false;
-            sp.color = hitColor;
-            time = lifespan - 0.5f;
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player")
+                || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                collision.gameObject.SendMessage("ApplyDamage", damage);
+                collider2d.enabled = false;
+                time = lifespan - 0.5f;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
